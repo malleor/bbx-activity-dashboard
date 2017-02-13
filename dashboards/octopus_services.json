@@ -6,7 +6,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "hideControls": false,
-  "id": 1,
+  "id": 2,
   "links": [],
   "refresh": false,
   "rows": [
@@ -16,36 +16,51 @@
       "panels": [
         {
           "aliasColors": {},
-          "bars": false,
+          "bars": true,
           "datasource": "bonsai_oct",
-          "fill": 1,
+          "fill": 4,
+          "hideTimeOverride": true,
           "id": 1,
           "legend": {
             "avg": false,
             "current": false,
             "max": false,
             "min": false,
-            "show": true,
+            "show": false,
             "total": false,
             "values": false
           },
-          "lines": true,
+          "lines": false,
           "linewidth": 1,
+          "links": [],
           "nullPointMode": "null",
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 6,
+          "span": 4,
           "stack": false,
-          "steppedLine": false,
+          "steppedLine": true,
           "targets": [
             {
+              "alias": "{{term cluster}}",
               "bucketAggs": [
                 {
-                  "field": "ordered",
-                  "id": "2",
+                  "fake": true,
+                  "field": "cluster",
+                  "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "fake": true,
+                  "field": "created",
+                  "id": "4",
                   "settings": {
                     "interval": "auto",
                     "min_doc_count": 0,
@@ -69,20 +84,22 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
+          "timeFrom": "10000d",
           "timeShift": null,
-          "title": "Panel Title",
+          "title": "Usługi na środowiskach",
           "tooltip": {
-            "shared": true,
+            "shared": false,
             "sort": 0,
             "value_type": "individual"
           },
           "type": "graph",
           "xaxis": {
-            "mode": "time",
+            "mode": "series",
             "name": null,
             "show": true,
-            "values": []
+            "values": [
+              "total"
+            ]
           },
           "yaxes": [
             {
@@ -90,7 +107,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": true
             },
             {
@@ -99,7 +116,7 @@
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true
+              "show": false
             }
           ]
         },
@@ -128,7 +145,7 @@
           "points": true,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 6,
+          "span": 8,
           "stack": false,
           "steppedLine": true,
           "targets": [
@@ -298,8 +315,8 @@
     ]
   },
   "time": {
-    "from": "2017-02-01T20:07:13.982Z",
-    "to": "2017-02-08T20:38:49.906Z"
+    "from": "now-30d",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -328,5 +345,5 @@
   },
   "timezone": "browser",
   "title": "PowerFarmer",
-  "version": 5
+  "version": 0
 }
