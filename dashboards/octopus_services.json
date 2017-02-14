@@ -12,8 +12,626 @@
   "rows": [
     {
       "collapse": false,
+      "height": 320,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "bonsai_oct",
+          "fill": 10,
+          "height": "320px",
+          "id": 3,
+          "interval": "",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 1,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Wykonanie ręczne",
+              "color": "#614D93",
+              "fill": 5,
+              "stack": false,
+              "transform": "negative-Y"
+            }
+          ],
+          "span": 9,
+          "stack": true,
+          "steppedLine": true,
+          "targets": [
+            {
+              "alias": "Wykonanie ręczne",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "manual",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "A",
+              "timeField": "created"
+            },
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "service",
+                  "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "1",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "manual",
+                  "id": "1",
+                  "inlineScript": "(doc['finished'].value - doc['started'].value)/1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['finished'].value - doc['started'].value)/1000"
+                    }
+                  },
+                  "type": "sum"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "B",
+              "timeField": "created"
+            },
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": true,
+              "metrics": [
+                {
+                  "field": "manual",
+                  "id": "1",
+                  "inlineScript": "(doc['finished'].value - doc['started'].value)/1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['finished'].value - doc['started'].value)/1000"
+                    }
+                  },
+                  "type": "sum"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "C",
+              "timeField": "created"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Uzysk czasowy",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(101, 118, 100, 0.97)"
+          ],
+          "datasource": "bonsai_oct",
+          "decimals": 1,
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "150px",
+          "id": 5,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "manual",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "A",
+              "timeField": "created"
+            }
+          ],
+          "thresholds": "0,0",
+          "title": "Czas wykonania ręcznego",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "total"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(142, 207, 78, 0.97)"
+          ],
+          "datasource": "bonsai_oct",
+          "decimals": 1,
+          "format": "s",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "height": "150px",
+          "id": 6,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "manual",
+                  "id": "1",
+                  "inlineScript": "(doc['finished'].value - doc['started'].value)/1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['finished'].value - doc['started'].value)/1000"
+                    }
+                  },
+                  "type": "sum"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "A",
+              "timeField": "created"
+            }
+          ],
+          "thresholds": "0,0",
+          "title": "Czas wykonania automatycznego",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "total"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
       "height": 246,
       "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "bonsai_oct",
+          "fill": 7,
+          "id": 2,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "service",
+                  "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "1",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "id",
+                  "id": "1",
+                  "inlineScript": "doc['finished'].value - doc['started'].value",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "doc['finished'].value - doc['started'].value"
+                    }
+                  },
+                  "type": "max"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "A",
+              "timeField": "created"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Uruchomienia",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": "Czas wykonania",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "datasource": "bonsai_oct",
+          "fill": 7,
+          "id": 4,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "service",
+                  "id": "3",
+                  "settings": {
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "id",
+                  "id": "1",
+                  "inlineScript": "doc['finished'].value - doc['started'].value",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "doc['finished'].value - doc['started'].value"
+                    }
+                  },
+                  "type": "max"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "A",
+              "timeField": "created"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Średni czas wykonania",
+          "tooltip": {
+            "shared": false,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "series",
+            "name": null,
+            "show": false,
+            "values": [
+              "avg"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        },
         {
           "aliasColors": {},
           "bars": true,
@@ -92,6 +710,7 @@
             "sort": 0,
             "value_type": "individual"
           },
+          "transparent": true,
           "type": "graph",
           "xaxis": {
             "mode": "series",
@@ -117,117 +736,6 @@
               "max": null,
               "min": null,
               "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "bonsai_oct",
-          "fill": 4,
-          "id": 2,
-          "legend": {
-            "alignAsTable": false,
-            "avg": true,
-            "current": false,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": false,
-          "linewidth": 0,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 2,
-          "points": true,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "span": 8,
-          "stack": false,
-          "steppedLine": true,
-          "targets": [
-            {
-              "alias": "",
-              "bucketAggs": [
-                {
-                  "fake": true,
-                  "field": "service",
-                  "id": "3",
-                  "settings": {
-                    "order": "asc",
-                    "orderBy": "_term",
-                    "size": "0"
-                  },
-                  "type": "terms"
-                },
-                {
-                  "field": "created",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$timeslice",
-                    "min_doc_count": 0,
-                    "trimEdges": 0
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "dsType": "elasticsearch",
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "id",
-                  "id": "1",
-                  "inlineScript": "doc['finished'].value - doc['started'].value",
-                  "meta": {},
-                  "settings": {
-                    "script": {
-                      "inline": "doc['finished'].value - doc['started'].value"
-                    }
-                  },
-                  "type": "max"
-                }
-              ],
-              "query": "_type:exec",
-              "refId": "A",
-              "timeField": "created"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Czas wykonania usług",
-          "tooltip": {
-            "shared": false,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ms",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
             }
           ]
         }
@@ -345,5 +853,5 @@
   },
   "timezone": "browser",
   "title": "PowerFarmer",
-  "version": 0
+  "version": 11
 }
