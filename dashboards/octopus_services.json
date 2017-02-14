@@ -6,7 +6,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "hideControls": false,
-  "id": 2,
+  "id": 3,
   "links": [],
   "refresh": false,
   "rows": [
@@ -42,44 +42,19 @@
           "seriesOverrides": [
             {
               "alias": "Wykonanie ręczne",
-              "color": "#614D93",
-              "fill": 5,
+              "color": "#ceb8a9",
               "stack": false,
               "transform": "negative-Y"
+            },
+            {
+              "alias": "Oczekiwanie",
+              "color": "#EEEEEE"
             }
           ],
           "span": 9,
           "stack": true,
           "steppedLine": true,
           "targets": [
-            {
-              "alias": "Wykonanie ręczne",
-              "bucketAggs": [
-                {
-                  "field": "created",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$timeslice",
-                    "min_doc_count": 0,
-                    "trimEdges": 0
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "dsType": "elasticsearch",
-              "metrics": [
-                {
-                  "field": "manual",
-                  "id": "1",
-                  "meta": {},
-                  "settings": {},
-                  "type": "sum"
-                }
-              ],
-              "query": "_type:exec",
-              "refId": "A",
-              "timeField": "created"
-            },
             {
               "alias": "",
               "bucketAggs": [
@@ -126,6 +101,40 @@
               "timeField": "created"
             },
             {
+              "alias": "Oczekiwanie",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "manual",
+                  "id": "1",
+                  "inlineScript": "(doc['started'].value - doc['created'].value)/1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['started'].value - doc['created'].value)/1000"
+                    }
+                  },
+                  "type": "sum"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "A",
+              "timeField": "created"
+            },
+            {
               "alias": "",
               "bucketAggs": [
                 {
@@ -157,6 +166,35 @@
               ],
               "query": "_type:exec",
               "refId": "C",
+              "timeField": "created"
+            },
+            {
+              "alias": "Wykonanie ręczne",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "manual",
+                  "id": "1",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "D",
               "timeField": "created"
             }
           ],
@@ -543,7 +581,16 @@
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
+          "seriesOverrides": [
+            {
+              "alias": "Oczekiwanie",
+              "color": "#eeeeee"
+            },
+            {
+              "alias": "Wykonanie ręczne",
+              "color": "#ceb8a9"
+            }
+          ],
           "span": 4,
           "stack": false,
           "steppedLine": false,
@@ -557,7 +604,7 @@
                   "id": "3",
                   "settings": {
                     "order": "desc",
-                    "orderBy": "1",
+                    "orderBy": "_term",
                     "size": "0"
                   },
                   "type": "terms"
@@ -586,11 +633,79 @@
                       "inline": "doc['finished'].value - doc['started'].value"
                     }
                   },
-                  "type": "max"
+                  "type": "avg"
                 }
               ],
               "query": "_type:exec",
               "refId": "A",
+              "timeField": "created"
+            },
+            {
+              "alias": "Oczekiwanie",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "id",
+                  "id": "1",
+                  "inlineScript": "doc['started'].value - doc['created'].value",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "doc['started'].value - doc['created'].value"
+                    }
+                  },
+                  "type": "avg"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "B",
+              "timeField": "created"
+            },
+            {
+              "alias": "Wykonanie ręczne",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$timeslice",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "manual",
+                  "id": "1",
+                  "inlineScript": "_value*1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "_value*1000"
+                    }
+                  },
+                  "type": "avg"
+                }
+              ],
+              "query": "_type:exec",
+              "refId": "C",
               "timeField": "created"
             }
           ],
@@ -619,7 +734,7 @@
               "label": "",
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": true
             },
             {
@@ -702,7 +817,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": "10000d",
+          "timeFrom": "1000d",
           "timeShift": null,
           "title": "Usługi na środowiskach",
           "tooltip": {
