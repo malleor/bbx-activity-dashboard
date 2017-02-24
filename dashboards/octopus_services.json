@@ -49,6 +49,10 @@
             {
               "alias": "Oczekiwanie",
               "color": "#EEEEEE"
+            },
+            {
+              "alias": "/Usługa.*/",
+              "legend": false
             }
           ],
           "span": 9,
@@ -56,7 +60,7 @@
           "steppedLine": true,
           "targets": [
             {
-              "alias": "",
+              "alias": "Usługa: {{term service}}",
               "bucketAggs": [
                 {
                   "fake": true,
@@ -203,7 +207,7 @@
           "timeShift": null,
           "title": "Uzysk czasowy",
           "tooltip": {
-            "shared": true,
+            "shared": false,
             "sort": 0,
             "value_type": "individual"
           },
@@ -938,8 +942,8 @@
     ]
   },
   "time": {
-    "from": "now-30d",
-    "to": "now"
+    "from": "2017-02-03T09:52:11.902Z",
+    "to": "2017-02-07T10:11:17.568Z"
   },
   "timepicker": {
     "refresh_intervals": [
