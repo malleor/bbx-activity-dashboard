@@ -109,7 +109,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "B",
               "timeField": "created"
             },
@@ -143,7 +143,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "A",
               "timeField": "created"
             },
@@ -177,7 +177,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "C",
               "timeField": "created"
             },
@@ -206,7 +206,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "D",
               "timeField": "created"
             },
@@ -240,7 +240,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "E",
               "timeField": "created"
             }
@@ -359,7 +359,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "A",
               "timeField": "created"
             }
@@ -462,7 +462,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "A",
               "timeField": "created"
             }
@@ -497,7 +497,7 @@
           "aliasColors": {},
           "bars": false,
           "datasource": "bonsai_oct",
-          "fill": 7,
+          "fill": 4,
           "id": 2,
           "legend": {
             "alignAsTable": false,
@@ -505,19 +505,29 @@
             "current": false,
             "max": false,
             "min": false,
-            "show": false,
+            "show": true,
             "total": false,
             "values": false
           },
           "lines": true,
-          "linewidth": 0,
+          "linewidth": 1,
           "links": [],
           "nullPointMode": "null as zero",
           "percentage": false,
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
+          "seriesOverrides": [
+            {
+              "alias": "Błąd",
+              "color": "#BF1B00",
+              "fill": 5
+            },
+            {
+              "alias": "Zakończony",
+              "color": "#7EB26D"
+            }
+          ],
           "span": 4,
           "stack": true,
           "steppedLine": false,
@@ -527,7 +537,7 @@
               "bucketAggs": [
                 {
                   "fake": true,
-                  "field": "service",
+                  "field": "status",
                   "id": "3",
                   "settings": {
                     "order": "asc",
@@ -540,7 +550,7 @@
                   "field": "created",
                   "id": "2",
                   "settings": {
-                    "interval": "$timeslice",
+                    "interval": "1d",
                     "min_doc_count": 0,
                     "trimEdges": 0
                   },
@@ -548,7 +558,7 @@
                 }
               ],
               "dsType": "elasticsearch",
-              "hide": false,
+              "hide": true,
               "metrics": [
                 {
                   "field": "id",
@@ -563,8 +573,49 @@
                   "type": "max"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "A",
+              "timeField": "created"
+            },
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "status",
+                  "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1d",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "id",
+                  "id": "1",
+                  "inlineScript": null,
+                  "meta": {},
+                  "settings": {},
+                  "type": "count"
+                }
+              ],
+              "query": "_type:exec AND _id:\\-*",
+              "refId": "B",
               "timeField": "created"
             }
           ],
@@ -573,7 +624,7 @@
           "timeShift": null,
           "title": "Uruchomienia",
           "tooltip": {
-            "shared": false,
+            "shared": true,
             "sort": 0,
             "value_type": "individual"
           },
@@ -587,8 +638,8 @@
           },
           "yaxes": [
             {
-              "format": "ms",
-              "label": "Czas wykonania",
+              "format": "short",
+              "label": "Liczba uruchomień",
               "logBase": 1,
               "max": null,
               "min": null,
@@ -683,7 +734,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "A",
               "timeField": "created"
             },
@@ -717,7 +768,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "B",
               "timeField": "created"
             },
@@ -751,7 +802,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "_type:exec",
+              "query": "_type:exec AND _id:\\-*",
               "refId": "C",
               "timeField": "created"
             }
@@ -858,7 +909,7 @@
                   "type": "count"
                 }
               ],
-              "query": "_type:services",
+              "query": "_type:services AND _id:\\-*",
               "refId": "A",
               "timeField": "created"
             }
@@ -985,8 +1036,8 @@
     ]
   },
   "time": {
-    "from": "2017-01-05T01:44:00.949Z",
-    "to": "2017-01-31T20:22:22.538Z"
+    "from": "2017-01-22T06:48:45.833Z",
+    "to": "2017-02-15T13:46:08.470Z"
   },
   "timepicker": {
     "refresh_intervals": [
