@@ -109,7 +109,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "B",
               "timeField": "created"
             },
@@ -143,7 +143,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "A",
               "timeField": "created"
             },
@@ -177,7 +177,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "C",
               "timeField": "created"
             },
@@ -206,7 +206,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "D",
               "timeField": "created"
             },
@@ -240,7 +240,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "E",
               "timeField": "created"
             }
@@ -359,7 +359,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "A",
               "timeField": "created"
             }
@@ -462,7 +462,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "A",
               "timeField": "created"
             }
@@ -573,7 +573,7 @@
                   "type": "max"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "A",
               "timeField": "created"
             },
@@ -614,7 +614,7 @@
                   "type": "count"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "B",
               "timeField": "created"
             }
@@ -1032,6 +1032,32 @@
         "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
         "refresh": 2,
         "type": "interval"
+      },
+      {
+        "allValue": "*",
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "bonsai_oct",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Usługa",
+        "multi": true,
+        "name": "service_name",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"name\", \"query\": \"_type:services AND _id:\\\\-*\"}",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
