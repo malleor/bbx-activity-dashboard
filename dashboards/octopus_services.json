@@ -734,7 +734,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "A",
               "timeField": "created"
             },
@@ -768,7 +768,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "B",
               "timeField": "created"
             },
@@ -802,7 +802,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "_type:exec AND _id:\\-*",
+              "query": "_type:exec AND _id:\\-* AND service:$service_name",
               "refId": "C",
               "timeField": "created"
             }
@@ -909,7 +909,7 @@
                   "type": "count"
                 }
               ],
-              "query": "_type:services AND _id:\\-*",
+              "query": "_type:services AND _id:\\-* AND name:$service_name",
               "refId": "A",
               "timeField": "created"
             }
