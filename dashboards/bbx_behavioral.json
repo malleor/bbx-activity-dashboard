@@ -73,11 +73,23 @@
           "steppedLine": false,
           "targets": [
             {
+              "alias": "{{term from}} → {{term to}}",
               "bucketAggs": [
                 {
                   "fake": true,
                   "field": "to",
                   "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "fake": true,
+                  "field": "from",
+                  "id": "4",
                   "settings": {
                     "order": "asc",
                     "orderBy": "_term",
@@ -112,7 +124,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "A",
               "timeField": "created"
             },
@@ -150,7 +162,7 @@
                   "type": "extended_stats"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "B",
               "timeField": "created"
             },
@@ -188,7 +200,7 @@
                   "type": "extended_stats"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "C",
               "timeField": "created"
             },
@@ -227,7 +239,7 @@
                   "type": "extended_stats"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "D",
               "timeField": "created"
             },
@@ -261,7 +273,7 @@
                   "type": "max"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "E",
               "timeField": "created"
             },
@@ -295,7 +307,7 @@
                   "type": "min"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "F",
               "timeField": "created"
             },
@@ -329,7 +341,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "G",
               "timeField": "created"
             }
@@ -429,11 +441,23 @@
           "steppedLine": false,
           "targets": [
             {
+              "alias": "{{term from}} → {{term to}}",
               "bucketAggs": [
                 {
                   "fake": true,
                   "field": "to",
                   "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "fake": true,
+                  "field": "from",
+                  "id": "4",
                   "settings": {
                     "order": "asc",
                     "orderBy": "_term",
@@ -460,7 +484,7 @@
                   "type": "count"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "A",
               "timeField": "created"
             },
@@ -479,6 +503,7 @@
                 }
               ],
               "dsType": "elasticsearch",
+              "hide": false,
               "metrics": [
                 {
                   "field": "select field",
@@ -486,7 +511,7 @@
                   "type": "count"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "B",
               "timeField": "created"
             },
@@ -512,7 +537,7 @@
                   "type": "count"
                 }
               ],
-              "query": "_type:activity2",
+              "query": "_type:activity2 AND to:$to_status",
               "refId": "C",
               "timeField": "created"
             }
@@ -565,11 +590,36 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "bonsai_bbx",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Status docelowy przejścia",
+        "multi": false,
+        "name": "to_status",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"to\", \"query\": \"_type:activity2\"}",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
-    "from": "2017-02-07T23:15:25.977Z",
-    "to": "2017-02-24T03:55:03.796Z"
+    "from": "2017-02-13T00:30:48.604Z",
+    "to": "2017-02-19T02:14:29.286Z"
   },
   "timepicker": {
     "refresh_intervals": [
