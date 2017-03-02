@@ -2,16 +2,17 @@
   "annotations": {
     "list": []
   },
-  "editable": true,
+  "editable": false,
   "gnetId": null,
   "graphTooltip": 0,
-  "hideControls": false,
+  "hideControls": true,
   "id": 4,
   "links": [],
+  "refresh": false,
   "rows": [
     {
       "collapse": false,
-      "height": 386,
+      "height": 327,
       "panels": [
         {
           "aliasColors": {},
@@ -100,7 +101,7 @@
           "yaxes": [
             {
               "format": "short",
-              "label": null,
+              "label": "Liczba założonych zgłoszeń",
               "logBase": 1,
               "max": null,
               "min": null,
@@ -126,7 +127,7 @@
     },
     {
       "collapse": false,
-      "height": 347,
+      "height": 250,
       "panels": [
         {
           "aliasColors": {},
@@ -214,7 +215,7 @@
           "yaxes": [
             {
               "format": "short",
-              "label": null,
+              "label": "Liczba założonych zgłoszeń",
               "logBase": 1,
               "max": null,
               "min": null,
@@ -249,8 +250,8 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "text": "1h",
-          "value": "1h"
+          "text": "1d",
+          "value": "1d"
         },
         "hide": 0,
         "label": null,
@@ -267,7 +268,7 @@
             "value": "30m"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "1h",
             "value": "1h"
           },
@@ -282,20 +283,25 @@
             "value": "12h"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1d",
             "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "1M",
+            "value": "1M"
           }
         ],
-        "query": "10m,30m,1h,6h,12h,1d",
+        "query": "10m,30m,1h,6h,12h,1d,1M",
         "refresh": 2,
         "type": "interval"
       }
     ]
   },
   "time": {
-    "from": "now/w",
-    "to": "now/w"
+    "from": "now-1M/M",
+    "to": "now-1M/M"
   },
   "timepicker": {
     "refresh_intervals": [
