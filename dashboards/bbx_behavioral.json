@@ -1,0 +1,602 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": false,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": true,
+  "id": 5,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": 377,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "bonsai_bbx",
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "stripe",
+              "color": "#7EB26D",
+              "fill": 2,
+              "legend": false,
+              "lines": true,
+              "linewidth": 0,
+              "points": false,
+              "zindex": -3
+            },
+            {
+              "alias": "/stripe_(min|max|avg.*)/i",
+              "fill": 0,
+              "legend": false,
+              "lines": true,
+              "linewidth": 0,
+              "points": false,
+              "zindex": -3
+            },
+            {
+              "alias": "/stripe_avg.*/i",
+              "color": "#508642",
+              "linewidth": 3
+            },
+            {
+              "alias": "stripe_max",
+              "color": "#7EB26D",
+              "fillBelowTo": "stripe_min"
+            }
+          ],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "to",
+                  "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "created",
+                  "id": "1",
+                  "inlineScript": "(doc['created'].value-doc['last'].value)/1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['created'].value-doc['last'].value)/1000"
+                    }
+                  },
+                  "type": "avg"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "A",
+              "timeField": "created"
+            },
+            {
+              "alias": "stripe",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": true,
+              "metrics": [
+                {
+                  "field": "created",
+                  "id": "1",
+                  "inlineScript": "(doc['created'].value-doc['last'].value)/1000",
+                  "meta": {
+                    "std_deviation_bounds_lower": false,
+                    "std_deviation_bounds_upper": true
+                  },
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['created'].value-doc['last'].value)/1000"
+                    },
+                    "sigma": 3
+                  },
+                  "type": "extended_stats"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "B",
+              "timeField": "created"
+            },
+            {
+              "alias": "stripe",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": true,
+              "metrics": [
+                {
+                  "field": "created",
+                  "id": "1",
+                  "inlineScript": "(doc['created'].value-doc['last'].value)/1000",
+                  "meta": {
+                    "std_deviation_bounds_lower": false,
+                    "std_deviation_bounds_upper": true
+                  },
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['created'].value-doc['last'].value)/1000"
+                    },
+                    "sigma": 1
+                  },
+                  "type": "extended_stats"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "C",
+              "timeField": "created"
+            },
+            {
+              "alias": "stripe",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": true,
+              "metrics": [
+                {
+                  "field": "created",
+                  "id": "1",
+                  "inlineScript": "(doc['created'].value-doc['last'].value)/1000",
+                  "meta": {
+                    "avg": true,
+                    "std_deviation_bounds_lower": false,
+                    "std_deviation_bounds_upper": false
+                  },
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['created'].value-doc['last'].value)/1000"
+                    },
+                    "sigma": 1
+                  },
+                  "type": "extended_stats"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "D",
+              "timeField": "created"
+            },
+            {
+              "alias": "stripe_max",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "created",
+                  "id": "1",
+                  "inlineScript": "(doc['created'].value-doc['last'].value)/1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['created'].value-doc['last'].value)/1000"
+                    }
+                  },
+                  "type": "max"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "E",
+              "timeField": "created"
+            },
+            {
+              "alias": "stripe_min",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "created",
+                  "id": "1",
+                  "inlineScript": "(doc['created'].value-doc['last'].value)/1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['created'].value-doc['last'].value)/1000"
+                    }
+                  },
+                  "type": "min"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "F",
+              "timeField": "created"
+            },
+            {
+              "alias": "stripe_avg",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "created",
+                  "id": "1",
+                  "inlineScript": "(doc['created'].value-doc['last'].value)/1000",
+                  "meta": {},
+                  "settings": {
+                    "script": {
+                      "inline": "(doc['created'].value-doc['last'].value)/1000"
+                    }
+                  },
+                  "type": "avg"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "G",
+              "timeField": "created"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Latencja przejść",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": "Czas od ostatniego przejścia",
+              "logBase": 10,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 330,
+      "panels": [
+        {
+          "aliasColors": {
+            "daily": "#F4D598"
+          },
+          "bars": false,
+          "datasource": "bonsai_bbx",
+          "fill": 7,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "overall",
+              "color": "#58140C",
+              "fill": 0,
+              "legend": false,
+              "linewidth": 1,
+              "stack": false
+            },
+            {
+              "alias": "daily",
+              "fill": 4,
+              "stack": false,
+              "steppedLine": true,
+              "yaxis": 2,
+              "zindex": -3
+            }
+          ],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "to",
+                  "id": "3",
+                  "settings": {
+                    "order": "asc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "A",
+              "timeField": "created"
+            },
+            {
+              "alias": "overall",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "B",
+              "timeField": "created"
+            },
+            {
+              "alias": "daily",
+              "bucketAggs": [
+                {
+                  "field": "created",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1d",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "elasticsearch",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "_type:activity2",
+              "refId": "C",
+              "timeField": "created"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Wolumen przejść",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Liczba przejść",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": "Dzienna liczba przejść",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2017-02-07T23:15:25.977Z",
+    "to": "2017-02-24T03:55:03.796Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "BlueBox behavioral analysis",
+  "version": 8
+}
